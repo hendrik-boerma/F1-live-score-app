@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0B0D0C;
+    color: #efefef;
+    margin: 0;
+    padding: 32px 32px 32px 32px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    background-color: #262626;
+    list-style-type: none;
+    font-size: 18px;
+    border-radius: 2px;
+}
+
+button {
+    padding: 8px;
+    background-color: #8C8A80;
+    color: #efefef;
+    list-style-type: none;
+    border: 0;
+    font-size: 18px;
+    border-radius: 8px 8px 0px 0px;
+}

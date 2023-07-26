@@ -4,6 +4,11 @@ fetch("https://ergast.com/api/f1/2023/driverStandings")
     const parser = new DOMParser();
     const xml = parser.parseFromString(data, "application/xml");
     console.log(xml);
-    console.log(xml.getElementsByTagName('givenName')[0]);
+
+    let text = "";
+    for (let i=0; i < 21; i++){
+        text += "<li>" + (i + 1) + ". " + xml.querySelectorAll('GivenName')[i].textContent + " " + xml.querySelectorAll('FamilyName')[i].textContent + "</li>"; 
+    }
+    document.getElementById("demo").innerHTML = text;
   })
   .catch(console.error);
