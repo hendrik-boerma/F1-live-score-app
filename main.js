@@ -9,6 +9,10 @@ fetch("https://ergast.com/api/f1/2023/driverStandings")
     for (let i=0; i < 21; i++){
         text += "<li>" + (i + 1) + ". " + xml.querySelectorAll('GivenName')[i].textContent + " " + xml.querySelectorAll('FamilyName')[i].textContent + "</li>"; 
     }
-    document.getElementById("demo").innerHTML = text;
+    document.getElementById("rankinglist").innerHTML = text;
   })
   .catch(console.error);
+
+  document.addEventListener('click', function handleClick(event) {
+    event.target.classList.toggle('active');
+  });  

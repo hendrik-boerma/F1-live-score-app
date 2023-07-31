@@ -9,10 +9,10 @@
 </head>
 <body>
     <h1>F1 Stand 2023</h1>
-    <button>Drivers</button>
-    <button>Constructors</button>
+    <button id="button-drivers" class="active" onclick="changelist('button-drivers')">Drivers</button>
+    <button id="button-constructors" onclick="changelist('button-constructors')">Constructors</button>
 
-    <ul id="demo"></ul>
+    <ul id="rankinglist" class="rankinglist active"></ul>
 
     <script src="main.js"></script>
 </body>
