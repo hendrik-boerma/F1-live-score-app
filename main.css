@@ -30,11 +30,11 @@ section {
 }
 
 .tablink.active {
-    background-color: #262626;
+    background-color:  rgb(38, 85, 85);
 }
 
 .tablink:hover {
-    background-color: #262626;
+    background-color: rgb(38, 85, 85);
 }
 
 #drivers {
@@ -63,6 +63,12 @@ tr {
     padding: 0.5rem;
 }
 
+tbody:nth-child(1) > tr{
+    background-color: rgb(38, 85, 85);
+    border-radius: 0rem 0.5rem 0rem 0rem;
+}
+
+
 th:nth-child(1), td:nth-child(1) {
     width: 20%;
 }
@@ -89,4 +95,9 @@ tbody {
     background-color: #262626;
     border-radius: 0.5rem;
     padding: 1rem;
+}
+
+#round {
+    display: flex;
+    gap: 2rem;
 }

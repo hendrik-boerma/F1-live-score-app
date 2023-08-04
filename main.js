@@ -9,7 +9,10 @@ fetch("https://ergast.com/api/f1/2023/driverStandings")
     for (let i=0; i < 21; i++){
         text += "<tr><td>" + (i + 1) + "</td><td>" + xml.querySelectorAll('GivenName')[i].textContent + " " + xml.querySelectorAll('FamilyName')[i].textContent + "</td><td>" + xml.querySelectorAll('DriverStanding')[i].getAttribute('points') + "</td></tr>"; 
     }
+    let standingsListElement = xml.querySelector("StandingsList");
+    let round = "<span>" + "Season: " + standingsListElement.getAttribute('season') + "</span>" + "<span>" + " Round: " + standingsListElement.getAttribute('round') + "</span>";
     document.getElementById("driverlist").innerHTML = text;
+    document.getElementById("round").innerHTML = round;
   })
   .catch(console.error);
 
