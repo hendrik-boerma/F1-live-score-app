@@ -11,17 +11,25 @@
 </head>
 
 <body>
-    <h1>F1 Dashboard</h1>
+    <header>
+        <h1>Formula 1 Dashboard</h1>
+    </header>
     <main>
         <section>
             <h2>Next Race</h2>
             <article class="card">
-                <h3>Spa franco</h3>
-                <p>Belgium</p>
+                <div class="card-title">
+                    <h3 id="nextrace"></h3>
+                    <p id="location"></p>
+                </div>
+                <div class="card-date">
+                    <p id="date"></p>
+                    <p id="time"></p>
+                </div>
             </article>
         </section>
         <section>
-            <h2>F1 Standings</h2>
+            <h2>Standings</h2>
             <p id="round"></p>
             <button id="drivertab" class="tablink active" onclick="toggleList('driver')">Drivers</button>
             <button id="constructortab" class="tablink" onclick="toggleList('constructor')">Constructors</button>
@@ -46,8 +54,10 @@
                 </tbody>
             </table>
         </section>
-        
     </main>
+    <footer>
+        <p>© 2023 Hendrik Boerma</p>
+    </footer>
 
     <script src="main.js"></script>
 </body>
