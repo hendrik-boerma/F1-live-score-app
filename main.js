@@ -46,7 +46,8 @@ function updateNextRace(i) {
 
     const race = xml.querySelectorAll("Race")[i];
     console.log(race);
-    const date = race.querySelectorAll("Date")[0].textContent;
+    const year = new Date().getFullYear();
+    const date = race.querySelectorAll("Date")[0].textContent.replace(`${year}-`, "");
     const inputValue = race.querySelectorAll("Time")[0].textContent.replace(":00Z", "");
     const [hours, minutes] = inputValue.split(":").map(Number);
     const formattedMinutes = String(minutes).padStart(2, "0");
