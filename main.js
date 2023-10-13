@@ -47,7 +47,14 @@ function updateNextRace(i) {
     const race = xml.querySelectorAll("Race")[i];
     console.log(race);
     const year = new Date().getFullYear();
-    const date = race.querySelectorAll("Date")[0].textContent.replace(`${year}-`, "");
+    const inputDate = race.querySelectorAll("Date")[0].textContent.replace(`${year}-`, "");
+    const [month, day] = inputDate.split('-'); 
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const abbreviatedMonth = monthNames[parseInt(month) - 1];
+    const date = `${abbreviatedMonth} ${day}`;
     const inputValue = race.querySelectorAll("Time")[0].textContent.replace(":00Z", "");
     const [hours, minutes] = inputValue.split(":").map(Number);
     const formattedMinutes = String(minutes).padStart(2, "0");
