@@ -12,7 +12,7 @@ function fetchAndProcessData(url, processDataCallback) {
 function updateDriverStandings(xml) {
   let text = "";
   for (let i = 0; i < 21; i++) {
-    text += `<tr><td>${i + 1}</td><td>${xml.querySelectorAll('GivenName')[i].textContent} ${xml.querySelectorAll('FamilyName')[i].textContent}</td><td>${xml.querySelectorAll('DriverStanding')[i].getAttribute('points')}</td></tr>`;
+    text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('GivenName')[i].textContent} ${xml.querySelectorAll('FamilyName')[i].textContent}</td><td>${xml.querySelectorAll('DriverStanding')[i].getAttribute('points')}</td></tr>`;
   }
   const standingsListElement = xml.querySelector("StandingsList");
   const round = `<span>Season: ${standingsListElement.getAttribute('season')}</span><span>Round: ${standingsListElement.getAttribute('round')}</span>`;
@@ -24,7 +24,7 @@ function updateDriverStandings(xml) {
 function updateConstructorStandings(xml) {
   let text = "";
   for (let i = 0; i < 10; i++) {
-    text += `<tr><td>${i + 1}</td><td>${xml.querySelectorAll('Name')[i].textContent}</td><td>${xml.querySelectorAll('ConstructorStanding')[i].getAttribute('points')}</td></tr>`;
+    text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('Name')[i].textContent}</td><td>${xml.querySelectorAll('ConstructorStanding')[i].getAttribute('points')}</td></tr>`;
   }
   document.getElementById("constructorlist").innerHTML = text;
   console.log(xml)
