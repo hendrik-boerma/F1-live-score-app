@@ -18,7 +18,6 @@ function updateDriverStandings(xml) {
   const round = `<span>Season: ${standingsListElement.getAttribute('season')}</span><span>Round: ${standingsListElement.getAttribute('round')}</span>`;
   document.getElementById("driverlist").innerHTML = text;
   document.getElementById("round").innerHTML = round;
-  console.log(xml)
 }
 
 function updateConstructorStandings(xml) {
@@ -27,7 +26,6 @@ function updateConstructorStandings(xml) {
     text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('Name')[i].textContent}</td><td>${xml.querySelectorAll('ConstructorStanding')[i].getAttribute('points')}</td></tr>`;
   }
   document.getElementById("constructorlist").innerHTML = text;
-  console.log(xml)
 }
 
 function updateCurrentRound(xml) {
@@ -42,10 +40,12 @@ function updateNextRace(i) {
   .then(data => {
     const parser = new DOMParser();
     const xml = parser.parseFromString(data, "application/xml");
-    console.log(xml);
-
     const race = xml.querySelectorAll("Race")[i];
-    console.log(race);
+
+    if (race === undefined) {
+      document.getElementById("nextrace").innerHTML = 'End of season';
+      document.getElementById("coma").innerHTML = '';
+    } else {
     const year = new Date().getFullYear();
     const inputDate = race.querySelectorAll("Date")[0].textContent.replace(`${year}-`, "");
     const [month, day] = inputDate.split('-'); 
@@ -65,8 +65,10 @@ function updateNextRace(i) {
     document.getElementById("date").innerHTML = date;
     document.getElementById("time").innerHTML = time;
     document.getElementById("location").innerHTML = location;
+  }
 })
 }
+
 
   function toggleList(listType) {
     const constructorStandings = document.getElementById('constructors');
