@@ -58,7 +58,7 @@ function updateNextRace(i) {
     const inputValue = race.querySelectorAll("Time")[0].textContent.replace(":00Z", "");
     const [hours, minutes] = inputValue.split(":").map(Number);
     const formattedMinutes = String(minutes).padStart(2, "0");
-    const time = (hours + 2 + ":" + formattedMinutes);
+    const time = (hours + 1 + ":" + formattedMinutes);
     const racename = xml.querySelectorAll("RaceName")[i].textContent;
     const location = xml.querySelectorAll("Country")[i].textContent;
     document.getElementById("nextrace").innerHTML = racename;
