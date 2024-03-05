@@ -11,7 +11,7 @@ function fetchAndProcessData(url, processDataCallback) {
 
 function updateDriverStandings(xml) {
   let text = "";
-  for (let i = 0; i < 21; i++) {
+  for (let i = 0; i < 20; i++) {
     text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('GivenName')[i].textContent} ${xml.querySelectorAll('FamilyName')[i].textContent}</td><td>${xml.querySelectorAll('DriverStanding')[i].getAttribute('points')}</td></tr>`;
   }
   const standingsListElement = xml.querySelector("StandingsList");
