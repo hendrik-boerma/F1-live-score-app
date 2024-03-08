@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#D9D9D9"/>
+    <meta name="theme-color" content="#D9D9D9" />
     <link rel="stylesheet" href="main.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <title>F1 live score</title>
+    <script src="https://kit.fontawesome.com/9403c8e971.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,24 +17,35 @@
         <h1>Formula 1 Dashboard</h1>
     </header>
     <main>
-        <section>
+        <section id="section1">
+            <h2>Current Leader</h2>
+            <article class="card">
+                <div class="card-title">
+                    <h3 id="leader" class="skeleton"></h3>
+                    <p id="team" class="skeleton"></p>
+                </div>
+                    <div class="card-icon">
+                            <i class="fa-solid fa-trophy fa-2xl"></i>
+                    </div>
+            </article>
             <h2>Next Race</h2>
             <article class="card">
                 <div class="card-title">
-                    <h3 id="nextrace"></h3>
-                    <p id="location"></p>
+                    <h3 id="nextrace" class="skeleton"></h3>
+                    <p id="location" class="skeleton"></p>
                 </div>
                 <div class="card-date">
-                    <p><span id="date"></span><span id="coma">, </span><span id="time"></span></p>
+                    <p  class="skeleton"><span id="date"></span><span id="coma">, </span><span id="time"></span></p>
                 </div>
+            </article>
         </section>
         <section id="section2">
             <h2>Standings</h2>
-            <p id="round"></p>
+            <p id="round" class="skeleton"></p>
             <button id="drivertab" class="tablink active" onclick="toggleList('driver')">Drivers</button>
             <button id="constructortab" class="tablink" onclick="toggleList('constructor')">Constructors</button>
 
-            <table id="drivers">
+            <table id="drivers" class="skeleton">
                 <tr>
                     <th></th>
                     <th>Position</th>
@@ -44,7 +56,7 @@
                 </tbody>
             </table>
 
-            <table id="constructors">
+            <table id="constructors" class="skeleton">
                 <tr>
                     <th></th>
                     <th>Position</th>
@@ -59,7 +71,6 @@
     <footer>
         <p>© 2023 Hendrik Boerma</p>
     </footer>
-
     <script src="main.js"></script>
 </body>
 

@@ -1,3 +1,12 @@
+
+const elementsWithSkeletonClass = document.querySelectorAll('.skeleton');
+
+window.addEventListener("load", function(){
+  elementsWithSkeletonClass.forEach(function(element) {
+    element.classList.remove('skeleton');
+  });
+})
+
 function fetchAndProcessData(url, processDataCallback) {
   fetch(url)
     .then(response => response.text())
@@ -11,18 +20,23 @@ function fetchAndProcessData(url, processDataCallback) {
 
 function updateDriverStandings(xml) {
   let text = "";
-  for (let i = 0; i < 20; i++) {
+  let totalDrivers = xml.querySelector('MRData').getAttribute('total');
+  for (let i = 0; i < totalDrivers; i++) {
     text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('GivenName')[i].textContent} ${xml.querySelectorAll('FamilyName')[i].textContent}</td><td>${xml.querySelectorAll('DriverStanding')[i].getAttribute('points')}</td></tr>`;
   }
   const standingsListElement = xml.querySelector("StandingsList");
   const round = `<span>Season: ${standingsListElement.getAttribute('season')}</span><span>Round: ${standingsListElement.getAttribute('round')}</span>`;
   document.getElementById("driverlist").innerHTML = text;
   document.getElementById("round").innerHTML = round;
+  document.getElementById("leader").innerHTML = xml.querySelectorAll('GivenName')[0].textContent + " " + xml.querySelectorAll('FamilyName')[0].textContent;
+  document.getElementById("team").innerHTML = xml.querySelectorAll('Name')[0].textContent;
+  
 }
 
 function updateConstructorStandings(xml) {
   let text = "";
-  for (let i = 0; i < 10; i++) {
+  let totalConstructors = xml.querySelector('MRData').getAttribute('total');
+  for (let i = 0; i < totalConstructors; i++) {
     text += `<tr><td class=${xml.querySelectorAll('Name')[i].textContent.replace(/\s+/g, '-').toLowerCase()}></td><td>${i + 1}</td><td>${xml.querySelectorAll('Name')[i].textContent}</td><td>${xml.querySelectorAll('ConstructorStanding')[i].getAttribute('points')}</td></tr>`;
   }
   document.getElementById("constructorlist").innerHTML = text;
@@ -68,7 +82,6 @@ function updateNextRace(i) {
         const inputValue = race.querySelectorAll("Time")[0].textContent.replace(":00Z", "");
         const [hours, minutes] = inputValue.split(":").map(Number);
         const formattedMinutes = String(minutes).padStart(2, "0");
-        const currentDate = new Date();
 
         if (raceDate > new Date(lastSunday(3)) && raceDate < new Date(lastSunday(10))) {
           const time = (hours + 2 + ":" + formattedMinutes);
@@ -86,7 +99,6 @@ function updateNextRace(i) {
       }
     })
 }
-
 
 function toggleList(listType) {
   const constructorStandings = document.getElementById('constructors');
