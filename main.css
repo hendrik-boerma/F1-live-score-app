@@ -8,8 +8,8 @@ body {
 }
 
 header {
+    border-top: solid rgba(121, 9, 9, 1) 1rem;
     font-size: 1rem;
-    background-color: #D9D9D9;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -233,14 +233,27 @@ tbody {
 }
 
 .card-date {
+    display: flex;
+    text-align: center;
+    gap: 2rem;
     background-color: #D9D9D9;
     width: 40%;
     border-radius: 0rem 0.5rem 0.5rem 0rem;
-    padding: 1rem;
-    display: flex;
+    padding: 0;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+}
+
+#month {
+    font-size: 1.25rem;
+}
+
+#day {
+    font-size: 2.5rem;
+}
+
+#time {
+    font-size: 1rem;
 }
 
 .card-icon {
