@@ -1,13 +1,7 @@
-
 const elementsWithSkeletonClass = document.querySelectorAll('.skeleton');
 
-window.addEventListener("load", function(){
-  elementsWithSkeletonClass.forEach(function(element) {
-    element.classList.remove('skeleton');
-  });
-})
-
 function fetchAndProcessData(url, processDataCallback) {
+  setTimeout(() => {
   fetch(url)
     .then(response => response.text())
     .then(data => {
@@ -15,7 +9,13 @@ function fetchAndProcessData(url, processDataCallback) {
       const xml = parser.parseFromString(data, "application/xml");
       processDataCallback(xml);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(function () {
+      elementsWithSkeletonClass.forEach(function (element) {
+          element.classList.remove('skeleton');
+      });
+  });  
+}, 1000); 
 }
 
 function updateDriverStandings(xml) {
