@@ -5,6 +5,7 @@ window.addEventListener("load", function(){
   elementsWithSkeletonClass.forEach(function(element) {
     element.classList.remove('skeleton');
   });
+  fetchAndProcessData("https://ergast.com/api/f1/current/constructorStandings", updateConstructorStandings);
 })
 
 function fetchAndProcessData(url, processDataCallback) {
@@ -122,5 +123,4 @@ function toggleList(listType) {
 }
 
 fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", updateDriverStandings);
-fetchAndProcessData("https://ergast.com/api/f1/current/constructorStandings", updateConstructorStandings);
 fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", updateCurrentRound);
