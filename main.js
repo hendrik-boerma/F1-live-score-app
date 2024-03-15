@@ -125,5 +125,7 @@ function toggleList(listType) {
   }
 }
 
-fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", updateDriverStandings);
-fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", updateCurrentRound);
+fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", function(xml) {
+    updateDriverStandings(xml);
+    updateCurrentRound(xml);
+});
