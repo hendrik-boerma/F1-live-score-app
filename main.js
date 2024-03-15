@@ -1,14 +1,11 @@
-
 const elementsWithSkeletonClass = document.querySelectorAll('.skeleton');
 
 window.addEventListener("load", function(){
-  elementsWithSkeletonClass.forEach(function(element) {
-    element.classList.remove('skeleton');
-  });
   fetchAndProcessData("https://ergast.com/api/f1/current/constructorStandings", updateConstructorStandings);
 })
 
 function fetchAndProcessData(url, processDataCallback) {
+  setTimeout(() => {
   fetch(url)
     .then(response => response.text())
     .then(data => {
@@ -16,7 +13,13 @@ function fetchAndProcessData(url, processDataCallback) {
       const xml = parser.parseFromString(data, "application/xml");
       processDataCallback(xml);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(function () {
+      elementsWithSkeletonClass.forEach(function (element) {
+          element.classList.remove('skeleton');
+      });
+  });  
+}, 2000); 
 }
 
 function updateDriverStandings(xml) {
@@ -74,11 +77,10 @@ function updateNextRace(i) {
         const inputDate = race.querySelectorAll("Date")[0].textContent.replace(`${year}-`, "");
         const [month, day] = inputDate.split('-');
         const monthNames = [
-          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
         ];
         const abbreviatedMonth = monthNames[parseInt(month) - 1];
-        const date = `${abbreviatedMonth} ${day}`;
         const raceDate = new Date(race.querySelectorAll("Date")[0].textContent.replace())
         const inputValue = race.querySelectorAll("Time")[0].textContent.replace(":00Z", "");
         const [hours, minutes] = inputValue.split(":").map(Number);
@@ -95,7 +97,8 @@ function updateNextRace(i) {
         const racename = xml.querySelectorAll("RaceName")[i].textContent;
         const location = xml.querySelectorAll("Country")[i].textContent;
         document.getElementById("nextrace").innerHTML = racename;
-        document.getElementById("date").innerHTML = date;
+        document.getElementById("month").innerHTML = abbreviatedMonth;
+        document.getElementById("day").innerHTML = day;
         document.getElementById("location").innerHTML = location;
       }
     })
