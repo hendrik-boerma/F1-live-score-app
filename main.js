@@ -1,5 +1,9 @@
 const elementsWithSkeletonClass = document.querySelectorAll('.skeleton');
 
+window.addEventListener("load", function(){
+  fetchAndProcessData("https://ergast.com/api/f1/current/constructorStandings", updateConstructorStandings);
+})
+
 function fetchAndProcessData(url, processDataCallback) {
   setTimeout(() => {
   fetch(url)
@@ -125,7 +129,3 @@ fetchAndProcessData("https://ergast.com/api/f1/current/driverStandings", functio
     updateDriverStandings(xml);
     updateCurrentRound(xml);
 });
-
-window.addEventListener("load", function(){
-  fetchAndProcessData("https://ergast.com/api/f1/current/constructorStandings", updateConstructorStandings);
-})
