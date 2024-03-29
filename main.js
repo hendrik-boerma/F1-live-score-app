@@ -19,7 +19,7 @@ function fetchAndProcessData(url, processDataCallback) {
           element.classList.remove('skeleton');
       });
   });  
-}, 2000); 
+});
 }
 
 function updateDriverStandings(xml) {
